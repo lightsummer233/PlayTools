@@ -5,6 +5,7 @@
 //  Created by Isaac Marovitz on 13/09/2022.
 //
 
+import CoreGraphics
 import Foundation
 
 @objc(Plugin)
@@ -31,4 +32,7 @@ public protocol Plugin: NSObjectProtocol {
     func setupScrollWheel(_ onMoved: @escaping (CGFloat, CGFloat) -> Bool)
     func urlForApplicationWithBundleIdentifier(_ value: String) -> URL?
     func setMenuBarVisible(_ value: Bool)
+
+    var windowTitle: String? { get set }
+    var windowImage: CGImage? { get }
 }
