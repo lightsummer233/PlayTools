@@ -130,7 +130,6 @@ class AKPlugin: NSObject, Plugin {
 
     private var modifierFlag: UInt = 0
 
-    // swiftlint:disable:next function_body_length
     func setupKeyboard(keyboard: @escaping (UInt16, Bool, Bool, Bool) -> Bool,
                        swapMode: @escaping () -> Bool) {
         func checkCmd(modifier: NSEvent.ModifierFlags) -> Bool {
@@ -313,4 +312,24 @@ class AKPlugin: NSObject, Plugin {
         }
         return decoded
     }()
+
+    var windowTitle: String? {
+        get {
+            NSApplication.shared.windows.first?.title
+        }
+        set {
+            if let newValue {
+                DispatchQueue.main.async {
+                    NSApplication.shared.windows.first?.title = newValue
+                }
+            }
+        }
+    }
+
+    var windowImage: CGImage? {
+        guard let windowID = NSApplication.shared.windows.first?.windowNumber else {
+            return nil
+        }
+        return CGWindowListCreateImage(.null, .optionIncludingWindow, CGWindowID(windowID), [.bestResolution, .boundsIgnoreFraming])
+    }
 }

@@ -95,6 +95,10 @@ let settings = PlaySettings.shared
     @objc lazy var disableBuiltinMouse = settingsData.disableBuiltinMouse
 
     @objc lazy var blockSleepSpamming = settingsData.blockSleepSpamming
+
+    @objc lazy var maaTools = settingsData.maaTools
+
+    @objc lazy var maaToolsPort = settingsData.maaToolsPort
 }
 
 struct AppSettingsData: Codable {
@@ -128,4 +132,7 @@ struct AppSettingsData: Codable {
     var resizableAspectRatioWidth = 0
     var resizableAspectRatioHeight = 0
     var blockSleepSpamming = false
+
+    var maaTools = false
+    var maaToolsPort = 1717
 }
